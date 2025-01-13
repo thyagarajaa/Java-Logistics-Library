@@ -1,5 +1,9 @@
 package org.example.instructor.DijkstrasAlgorithim;
 
+import org.example.instructor.DijkstrasAlgorithim.DataStructures.Dijkstra;
+import org.example.instructor.DijkstrasAlgorithim.DataStructures.Graph;
+import org.example.instructor.DijkstrasAlgorithim.DataStructures.Node;
+
 public class BasicDijkstraTesting {
     public static void main(String[] args) {
         Node nodeA = new Node("A");

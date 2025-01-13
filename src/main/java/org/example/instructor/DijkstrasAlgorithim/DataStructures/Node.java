@@ -1,4 +1,4 @@
-package org.example.instructor.DijkstrasAlgorithim;
+package org.example.instructor.DijkstrasAlgorithim.DataStructures;
 
 import lombok.Getter;
 import lombok.Setter;
