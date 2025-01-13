@@ -1,8 +1,11 @@
 package org.example.instructor.DijkstrasAlgorithim;
 
+import org.example.instructor.DijkstrasAlgorithim.DataIngress.CSVIngress;
 import org.example.instructor.DijkstrasAlgorithim.DataStructures.Dijkstra;
 import org.example.instructor.DijkstrasAlgorithim.DataStructures.Graph;
 import org.example.instructor.DijkstrasAlgorithim.DataStructures.Node;
+
+import java.io.File;
 
 public class BasicDijkstraTesting {
     public static void main(String[] args) {
@@ -35,7 +38,15 @@ public class BasicDijkstraTesting {
         graph.addNode(nodeE);
         graph.addNode(nodeF);
 
-        graph = Dijkstra.calculateShortestPathFromSource(graph, nodeA);
+        Dijkstra.calculateShortestPathFromSource(graph, nodeA);
+
+        CSVIngress fromFile = new CSVIngress(new File("data/sampleData.csv"));
+        fromFile.runDijkstrasAlgorithm("A");
+
+        //TODO From Mapbox source
+        // TODO read points from file
+        // TODO send list to mapbox
+        // TODO process output
 
     }
 }

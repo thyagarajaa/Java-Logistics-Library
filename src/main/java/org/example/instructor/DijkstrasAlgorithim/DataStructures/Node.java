@@ -17,6 +17,9 @@ public class Node {
      */
     private String name;
 
+    private long latitude;
+    private long longitude;
+
     /**
      * The shortest path from the source node to this node.
      */
