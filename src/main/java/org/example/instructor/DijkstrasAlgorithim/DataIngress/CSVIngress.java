@@ -76,7 +76,6 @@ public class CSVIngress {
         }
     }
 
-
     /**
      * Reads a distance matrix and node names from a CSV file runs Djikstra's
      * Algorithim to find the shortest path.

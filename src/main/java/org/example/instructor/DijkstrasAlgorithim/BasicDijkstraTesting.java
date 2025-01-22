@@ -40,8 +40,8 @@ public class BasicDijkstraTesting {
 
         Dijkstra.calculateShortestPathFromSource(graph, nodeA);
 
-        CSVIngress fromFile = new CSVIngress(new File("data/sampleData.csv"));
-        fromFile.runDijkstrasAlgorithm("A");
+        CSVIngress fromFile = new CSVIngress(new File("data/7BrewDijkstra.csv"));
+        fromFile.runDijkstrasAlgorithm("HeadQ");
 
         //TODO From Mapbox source
         // TODO read points from file
