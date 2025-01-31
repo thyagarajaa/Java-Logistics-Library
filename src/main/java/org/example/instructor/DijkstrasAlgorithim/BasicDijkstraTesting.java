@@ -1,6 +1,7 @@
 package org.example.instructor.DijkstrasAlgorithim;
 
 import org.example.instructor.DijkstrasAlgorithim.DataIngress.CSVIngress;
+import org.example.instructor.DijkstrasAlgorithim.DataIngress.MapboxMatrix;
 import org.example.instructor.DijkstrasAlgorithim.DataStructures.Dijkstra;
 import org.example.instructor.DijkstrasAlgorithim.DataStructures.Graph;
 import org.example.instructor.DijkstrasAlgorithim.DataStructures.Node;
@@ -40,13 +41,13 @@ public class BasicDijkstraTesting {
 
         Dijkstra.calculateShortestPathFromSource(graph, nodeA);
 
-        CSVIngress fromFile = new CSVIngress(new File("data/7BrewDijkstra.csv"));
+        CSVIngress fromFile = new CSVIngress(new File("data/sampleData.csv"));
         fromFile.runDijkstrasAlgorithm("HeadQ");
 
-        //TODO From Mapbox source
-        // TODO read points from file
-        // TODO send list to mapbox
-        // TODO process output
+        String mapboxKey = "YOUR_MAPBOX_ACCESS_TOKEN"; //TODO MAKE SURE YOU ADD YOUR TOKEN
+        MapboxMatrix mapboxMatrix = new MapboxMatrix(mapboxKey, new File("data/nodes.csv"), MapboxMatrix.MapboxProfile.DRIVING);
+
+        mapboxMatrix.runDijkstrasAlgorithm("Node1");
 
     }
 }

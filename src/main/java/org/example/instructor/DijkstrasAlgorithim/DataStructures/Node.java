@@ -17,8 +17,8 @@ public class Node {
      */
     private String name;
 
-    private long latitude;
-    private long longitude;
+    private double latitude;
+    private double longitude;
 
     /**
      * The shortest path from the source node to this node.
@@ -57,4 +57,9 @@ public class Node {
         this.name = name;
     }
 
+    public Node(String name, double longitude, double latitude) {
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 }

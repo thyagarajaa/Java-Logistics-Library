@@ -76,6 +76,67 @@ public class CSVIngress {
         }
     }
 
+
+    /**
+     * Reads a CSV file and creates a list of {@code Node} objects. The CSV file is expected to have
+     * the following format:
+     *
+     * <pre>
+     * name,longitude,latitude
+     * NodeA,-122.4184,37.7517
+     * NodeB,-122.4229,37.7552
+     * NodeC,-122.4269,37.7597
+     * </pre>
+     *
+     * Each row represents a node with its name, longitude, and latitude. The first row is treated as
+     * a header and is skipped during processing. If any field in a row is blank, or if the file
+     * cannot be read, an appropriate exception will be thrown.
+     *
+     * @param file the CSV file to read
+     * @return a list of {@code Node} objects created from the data in the CSV file
+     * @throws IllegalArgumentException if a row contains blank fields or if the longitude/latitude values
+     *                                  cannot be parsed as numbers
+     * @throws RuntimeException if an error occurs while reading the file
+     */
+    public static List<Node> createNodesFromCsv(File file) {
+        List<Node> nodes = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = br.readLine()) != null) {
+                // Skip the header row
+                if (isFirstLine) {
+                    isFirstLine = false;
+                    continue;
+                }
+
+                // Split line into values
+                String[] values = line.split(",");
+
+                // Ensure the CSV format is correct
+                if (values.length < 3 || values[0].trim().isEmpty() || values[1].trim().isEmpty() || values[2].trim().isEmpty()) {
+                    throw new IllegalArgumentException("CSV row contains blank fields: " + line);
+                }
+
+                // Parse node name, longitude, and latitude
+                String nodeName = values[0].trim();
+                double longitude = Double.parseDouble(values[1].trim());
+                double latitude = Double.parseDouble(values[2].trim());
+
+                // Create and add the Node
+                nodes.add(new Node(nodeName, longitude, latitude));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading CSV file: " + file.getPath(), e);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid number format in CSV file", e);
+        }
+
+        return nodes;
+    }
+
     /**
      * Reads a distance matrix and node names from a CSV file runs Djikstra's
      * Algorithim to find the shortest path.

@@ -32,7 +32,7 @@ public class Dijkstra {
 
     private static void printOutput(Set<Node> settled){
         List<Node> permanent = new ArrayList<>(settled.stream().sorted(Comparator.comparingInt(Node::getDistance)).toList());
-        System.out.println("Node | Distance | Path");
+        System.out.println("Node | Distance/Duration | Path");
         System.out.println("______________________");
         for (Node i : permanent){
             List<String> shortestPath = i.getShortestPath().stream().map(Node::getName).toList();
