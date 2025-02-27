@@ -1,10 +1,11 @@
-package org.example.instructor.DijkstrasAlgorithim.DataIngress;
+package com.example.jll.DijkstrasAlgorithim.DataIngress;
 
+import com.example.jll.DijkstrasAlgorithim.Visualization.ForceDiagram;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.instructor.DijkstrasAlgorithim.DataStructures.Dijkstra;
-import org.example.instructor.DijkstrasAlgorithim.DataStructures.Graph;
-import org.example.instructor.DijkstrasAlgorithim.DataStructures.Node;
+import com.example.jll.DijkstrasAlgorithim.DataStructures.Dijkstra;
+import com.example.jll.DijkstrasAlgorithim.DataStructures.Graph;
+import com.example.jll.DijkstrasAlgorithim.DataStructures.Node;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -144,7 +145,7 @@ public class CSVIngress {
      * @param  source String with the name of the source node
      * @throws NullPointerException If the specified source node does not exist.
      */
-    public void runDijkstrasAlgorithm(String source) {
+    public Graph runDijkstrasAlgorithm(String source) {
         Graph graph = new Graph();
 
         for (Node node : this.nodes) {
@@ -154,10 +155,21 @@ public class CSVIngress {
         try {
             Node sourceNode = nodes.stream().filter(node -> node.getName().equals(source)).findFirst().orElse(null);
             assert sourceNode != null;
-            this.output = Dijkstra.calculateShortestPathFromSource(graph, sourceNode);
+            return Dijkstra.calculateShortestPathFromSource(sourceNode);
 
         } catch (NullPointerException e) {
-            System.out.println("The source node " + source + " does not exist.");
+            throw new NullPointerException("The source node " + source + " does not exist.");
         }
+    }
+
+
+    public void visualizeGraph(String title){
+        Graph graph = new Graph(nodes);
+        ForceDiagram visual = new ForceDiagram(graph, title);
+    }
+
+    public void visualizeShortestPath(String title, String soruceNode){
+        Graph graph = new Graph(nodes);
+        ForceDiagram visual = new ForceDiagram(graph, title, soruceNode);
     }
 }

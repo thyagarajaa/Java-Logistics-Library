@@ -1,4 +1,4 @@
-package org.example.instructor.DijkstrasAlgorithim.DataStructures;
+package com.example.jll.DijkstrasAlgorithim.DataStructures;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,14 +29,14 @@ public class Node {
      * The current shortest distance from the source node to this node.
      * Initialized to Integer.MAX_VALUE to represent infinity.
      */
-    private Integer distance = Integer.MAX_VALUE;
+    private Double distance = Double.MAX_VALUE;
 
     /**
      * A map of adjacent nodes used to associate immediate neighbors with edge length.
      * This is a simplified implementation of an adjacency list,
      * which is more suitable for the Dijkstra algorithm than the adjacency matrix.
      */
-    Map<Node, Integer> adjacentNodes = new HashMap<>();
+    Map<Node, Double> adjacentNodes = new HashMap<>();
 
     /**
      * Adds an adjacent node with a specified distance to this node.
@@ -44,7 +44,7 @@ public class Node {
      * @param destination The adjacent node to connect to.
      * @param distance    The distance to the adjacent node.
      */
-    public void addDestination(Node destination, int distance) {
+    public void addDestination(Node destination, double distance) {
         adjacentNodes.put(destination, distance);
     }
 
