@@ -2,7 +2,29 @@ package com.example.jll.DijkstrasAlgorithim.DataStructures;
 
 import java.util.*;
 
+/**
+ * The {@code Dijkstra} class implements Dijkstra's algorithm to calculate the shortest path
+ * from a given source node to all other nodes in a graph.
+ * <p>
+ * The algorithm iterates through nodes, updating distances based on edge weights,
+ * ensuring that each node's shortest distance from the source is computed.
+ * </p>
+ *
+ * @author Ani Thyagarajan
+ */
 public class Dijkstra {
+
+    /**
+     * Computes the shortest paths from the given source node to all other nodes in the graph
+     * using Dijkstra's algorithm.
+     * <p>
+     * This method processes each node, updating its minimum distance and predecessors,
+     * ultimately constructing a graph representation of the shortest paths.
+     * </p>
+     *
+     * @param source The source node from which shortest paths are calculated.
+     * @return A {@code Graph} object containing the shortest paths from the source node.
+     */
     public static Graph calculateShortestPathFromSource(Node source) {
         source.setDistance(0.0);
 

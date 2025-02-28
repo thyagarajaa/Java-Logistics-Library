@@ -20,14 +20,52 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The {@code MapboxMatrix} class is responsible for interfacing with the Mapbox Directions Matrix API
+ * to retrieve a distance or duration matrix for a given set of nodes.
+ * <p>
+ * This class constructs a matrix by making API requests based on the provided nodes,
+ * transport profile, and unit preferences.
+ * </p>
+ *
+ * @author Ani Thyagarajan
+ */
 public class MapboxMatrix {
 
+    /**
+     * Base URL for the Mapbox Directions Matrix API.
+     */
     private static final String MATRIX_URL = "https://api.mapbox.com/directions-matrix/v1/";
+
+    /**
+     * List of nodes representing locations for which the distance matrix is generated.
+     */
     private final List<Node> nodes;
+
+    /**
+     * API key for authenticating requests to the Mapbox API.
+     */
     private final String apiKey;
+
+    /**
+     * The transport profile used for the distance matrix (e.g., driving, walking, cycling).
+     */
     private final MapboxProfile profile;
+
+    /**
+     * The unit system used for distance calculations (e.g., metric, imperial).
+     */
     private final MapboxUnits units;
 
+    /**
+     * Constructs a {@code MapboxMatrix} instance using a predefined list of nodes.
+     * This constructor initializes the graph by calling {@code generateGraph()}.
+     *
+     * @param apiKey  The Mapbox API key for authentication.
+     * @param nodes   A list of nodes representing locations.
+     * @param profile The Mapbox profile defining the mode of transportation.
+     * @param units   The unit system for distances (metric or imperial).
+     */
     public MapboxMatrix(String apiKey, List<Node> nodes, MapboxProfile profile, MapboxUnits units) {
         this.apiKey = apiKey;
         this.nodes = nodes;
@@ -36,6 +74,15 @@ public class MapboxMatrix {
         this.generateGraph();
     }
 
+    /**
+     * Constructs a {@code MapboxMatrix} instance by reading node data from a CSV file.
+     * This constructor initializes the graph by calling {@code generateGraph()}.
+     *
+     * @param apiKey        The Mapbox API key for authentication.
+     * @param csvDataSource The CSV file containing node data.
+     * @param profile       The Mapbox profile defining the mode of transportation.
+     * @param units         The unit system for distances (metric or imperial).
+     */
     public MapboxMatrix(String apiKey, File csvDataSource, MapboxProfile profile, MapboxUnits units) {
         this.apiKey = apiKey;
         this.nodes = CSVIngress.createNodesFromCsv(csvDataSource);
@@ -43,6 +90,7 @@ public class MapboxMatrix {
         this.units = units;
         this.generateGraph();
     }
+
 
     /**
      * Retrieves a duration matrix from the Mapbox Matrix API using the driving profile

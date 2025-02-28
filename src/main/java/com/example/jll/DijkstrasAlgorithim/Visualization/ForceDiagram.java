@@ -1,12 +1,10 @@
 package com.example.jll.DijkstrasAlgorithim.Visualization;
 
+import com.example.jll.DijkstrasAlgorithim.DataStructures.Graph;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lombok.Getter;
 import com.example.jll.DijkstrasAlgorithim.DataStructures.Node;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.SingleGraph;
 
 import java.awt.*;
 import java.io.File;
@@ -17,14 +15,32 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The {@code ForceDiagram} class is responsible for visualizing a graph representation
+ * of Dijkstra's algorithm results using a force-directed diagram.
+ * <p>
+ * This class utilizes the {@code GraphStream} library to generate a graphical
+ * representation of the shortest path calculations.
+ * </p>
+ *
+ * @author Ani Thyagarajan
+ */
 public class ForceDiagram {
 
-    @Getter
-    private final Graph graph = new SingleGraph("Djikstra's Algorithm");
+    /**
+     * The title of the force-directed diagram.
+     */
     private final String title;
+
+    /**
+     * The source node from which the shortest paths are computed.
+     */
     private String source;
 
-    private final com.example.jll.DijkstrasAlgorithim.DataStructures.Graph data;
+    /**
+     * The data structure representing the graph used for Dijkstra's algorithm computations.
+     */
+    private final Graph data;
 
     /**
      * Constructs a new {@code ForceDiagram} that visualizes the shortest path.
@@ -38,7 +54,7 @@ public class ForceDiagram {
      * @param title      the title of the diagram
      * @param sourceNode the identifier of the source node to highlight the shortest path
      */
-    public ForceDiagram(com.example.jll.DijkstrasAlgorithim.DataStructures.Graph data, String title, String sourceNode) {
+    public ForceDiagram(Graph data, String title, String sourceNode) {
         this.data = data;
         this.title = title;
         this.source = sourceNode;
@@ -55,7 +71,7 @@ public class ForceDiagram {
      * @param data  the graph data to be visualized
      * @param title the title of the diagram
      */
-    public ForceDiagram(com.example.jll.DijkstrasAlgorithim.DataStructures.Graph data, String title) {
+    public ForceDiagram(Graph data, String title) {
         this.data = data;
         this.title = title;
         createDiagram(false);

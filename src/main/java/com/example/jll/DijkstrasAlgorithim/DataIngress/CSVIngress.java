@@ -11,17 +11,45 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The {@code CSVIngress} class is responsible for reading a CSV file
+ * and processing it to create a list of nodes, a distance matrix, and a graph representation.
+ * <p>
+ * This class initializes the node list upon instantiation and provides mechanisms to
+ * construct the necessary data structures for graph processing.
+ * </p>
+ *
+ * @author Ani Thyagarajan
+ */
 @Getter
 @Setter
 public class CSVIngress {
+
+    /**
+     * The file path to the CSV data source.
+     */
     private final File path;
 
+    /**
+     * A list of nodes parsed from the CSV file.
+     */
     private List<Node> nodes;
 
+    /**
+     * A distance matrix representing the relationships between nodes.
+     */
     private List<List<Integer>> distanceMatrix;
 
+    /**
+     * The generated graph output based on the CSV data.
+     */
     private Graph output;
 
+    /**
+     * Constructs a {@code CSVIngress} instance and initializes the node list.
+     *
+     * @param path The CSV file path containing node and distance data.
+     */
     public CSVIngress(File path) {
         this.path = path;
         createNodes();
