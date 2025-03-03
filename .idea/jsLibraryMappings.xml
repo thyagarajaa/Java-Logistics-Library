@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{d3.v5, d3.v6, mapbox-gl}" />
     <file url="file://$PROJECT_DIR$/src/main" libraries="{plotly-latest}" />
   </component>
 </project>
